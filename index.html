@@ -1,0 +1,79 @@
+<html>
+<html lang=ru>
+<head>
+  <meta charset=UTF-8>
+  <meta name=viewport content=width=device-width, initial-scale=1.0>
+  <title>Каталог учебных товаров — Практическая работа №2</title>
+  <link rel=stylesheet href=css/styles.css>
+</head>
+<body>
+
+  <header class=header>
+    <div class=header__inner>
+      <h1 class=header__title>Каталог учебных товаров</h1>
+      <span class=header__badge>Практическая работа №2</span>
+    </div>
+  </header>
+
+  <div class=layout>
+
+    <--resume-retries Панель фильтров -->
+    <aside class=filters aria-label=Фильтры каталога>
+      <h2 class=filters__title>Фильтры</h2>
+
+      <form id=filters-form>
+        <div class=filters__group>
+          <label class=filters__label for=filter-category>Категория</label>
+          <select class=filters__select id=filter-category name=category>
+            <option value=>Все категории</option>
+            <option value=Книги>Книги</option>
+            <option value=Курсы>Курсы</option>
+            <option value=Инструменты>Инструменты</option>
+          </select>
+        </div>
+
+        <div class=filters__group>
+          <label class=filters__label for=filter-price>Максимальная цена: <span id=price-value>2020</span> ₽</label>
+          <input class=filters__range type=range id=filter-price name=price min=500 max=2100 step=10 value=2100>
+        </div>
+
+        <div class=filters__group>
+          <label class=filters__label for=filter-rating>Минимальный рейтинг</label>
+          <select class=filters__select id=filter-rating name=rating>
+            <option value=0>Любой</option>
+            <option value=4.0>4.0 и выше</option>
+            <option value=4.2>4.2 и выше</option>
+            <option value=4.4>4.4 и выше</option>
+            <option value=4.6>4.6 и выше</option>
+            <option value=4.8>4.8 и выше</option>
+          </select>
+        </div>
+
+        <button class=filters__reset type=reset id=reset-filters>Сбросить</button>
+      </form>
+    </aside>
+
+    <--resume-retries Основная область -->
+    <main>
+      <div class=info>
+        <span class=info__count>Найдено: <strong id=result-count>18</strong> из 18</span>
+        <span class=info__hint>Данные из catalog.csv</span>
+      </div>
+
+      <section class=catalog id=catalog aria-label=Каталог товаров>
+        <--resume-retries Карточки вставляются JS -->
+      </section>
+    </main>
+
+  </div>
+
+  <footer class=footer>
+    <div class=footer__inner>
+      <span>© 2026 Учебный каталог</span>
+      <span>ТПО · Практическая работа №2</span>
+    </div>
+  </footer>
+
+  <script src=js/app.js></script>
+</body>
+</html>
