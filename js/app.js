@@ -20,6 +20,13 @@ const PRODUCTS = [
   { id: 18, name: "Учебный товар 18", category: "Инструменты", price: 2020, rating: 3.8 }
 ];
 
+// Карта изображений из assets/ по категориям
+const CATEGORY_IMAGES = {
+  "Книги":       "assets/product-01.svg",
+  "Курсы":       "assets/product-02.svg",
+  "Инструменты": "assets/product-03.svg"
+};
+
 const catalogEl = document.getElementById("catalog");
 const countEl = document.getElementById("result-count");
 const formEl = document.getElementById("filters-form");
@@ -29,12 +36,10 @@ const categorySelect = document.getElementById("filter-category");
 const ratingSelect = document.getElementById("filter-rating");
 const resetBtn = document.getElementById("reset-filters");
 
-// Форматирование цены
 function formatPrice(value) {
   return new Intl.NumberFormat("ru-RU").format(value) + " ₽";
 }
 
-// Рендер карточек
 function renderCards(items) {
   if (items.length === 0) {
     catalogEl.innerHTML = `<div class="catalog__empty">По заданным фильтрам ничего не найдено. Попробуйте изменить условия.</div>`;
@@ -42,24 +47,31 @@ function renderCards(items) {
     return;
   }
 
-  catalogEl.innerHTML = items.map(item => `
-    <article class="card" data-id="${item.id}">
-      <div class="card__top">
-        <h3 class="card__title">${item.name}</h3>
-        <span class="card__badge">${item.category}</span>
-      </div>
-      <p class="card__meta">ID: ${item.id}</p>
-      <div class="card__footer">
-        <span class="card__price">${formatPrice(item.price)}</span>
-        <span class="card__rating">★ ${item.rating.toFixed(1)}</span>
-      </div>
-    </article>
-  `).join("");
+  catalogEl.innerHTML = items.map(item => {
+    const imgSrc = CATEGORY_IMAGES[item.category] || "";
+    const imgAlt = `Изображение категории «${item.category}»`;
+
+    return `
+      <article class="card" data-id="${item.id}">
+        <div class="card__media">
+          <img class="card__image" src="${imgSrc}" alt="${imgAlt}" loading="lazy" width="64" height="64">
+        </div>
+        <div class="card__top">
+          <h3 class="card__title">${item.name}</h3>
+          <span class="card__badge">${item.category}</span>
+        </div>
+        <p class="card__meta">ID: ${item.id}</p>
+        <div class="card__footer">
+          <span class="card__price">${formatPrice(item.price)}</span>
+          <span class="card__rating">★ ${item.rating.toFixed(1)}</span>
+        </div>
+      </article>
+    `;
+  }).join("");
 
   countEl.textContent = items.length;
 }
 
-// Применение фильтров
 function applyFilters() {
   const category = categorySelect.value;
   const maxPrice = Number(priceInput.value);
@@ -77,17 +89,14 @@ function applyFilters() {
   renderCards(filtered);
 }
 
-// Слушатели
 formEl.addEventListener("input", applyFilters);
 formEl.addEventListener("change", applyFilters);
 
 resetBtn.addEventListener("click", () => {
-  // Сброс произойдёт автоматически, но перерисуем после сброса
   setTimeout(() => {
     priceValue.textContent = priceInput.value;
     applyFilters();
   }, 0);
 });
 
-// Первичный рендер
 renderCards(PRODUCTS);

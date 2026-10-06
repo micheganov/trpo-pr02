@@ -225,6 +225,19 @@ ul {
   align-items: center;
   gap: spacing(0.5);
 }
+.card__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(49, 94, 251, 0.06);
+  border-radius: 14px;
+  padding: spacing(0.75);
+}
+.card__image {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
 .card__title {
   margin: 0;
   font-size: 1.05rem;

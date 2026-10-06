@@ -142,6 +142,21 @@
     gap: spacing(0.5);
   }
 
+    &__media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba($accent, 0.06);
+    border-radius: $radius;
+    padding: spacing(0.75);
+  }
+
+  &__image {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+
   &__title {
     margin: 0;
     font-size: 1.05rem;
