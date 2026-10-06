@@ -17,17 +17,21 @@
 ## Структура проекта
 ```
 ├── scss/                исходные SCSS-файлы
-│   ├── _variables.scss
-│   ├── _base.scss
-│   ├── _layout.scss
-│   ├── _components.scss
+│   ├── variables.scss
+│   ├── base.scss
+│   ├── layout.scss
+│   ├── components.scss
 │   └── styles.scss
 ├── css/                 скомпилированный CSS
 │   └── styles.css
 ├── data/                исходный датасет
 │   ├── catalog.csv
 │   └── theme.json
-├── js/
+├── assets/
+│   ├── product-01.svg
+│   ├── product-02.svg
+│   └── product-03.svg
+├── js
 │   └── app.js
 ├── index.html
 ├── README.md
@@ -81,18 +85,3 @@ SCSS-переменные (`$accent`, `$space`) существуют тольк�
 
 ### Вложенность
 Вложенность используется не глубже 3 уровней (например, `.card { &__title { ... } }`).
-
-## Проверка
-1. Откройте DevTools → Responsive Mode.
-2. Проверьте ширины 375px, 768px, 1440px — горизонтальной прокрутки быть не должно.
-3. Убедитесь, что на мобильном панель фильтров находится над карточками.
-4. В Console не должно быть ошибок.
-5. Попробуйте выставить фильтры так, чтобы ничего не нашлось — появится сообщение.
-
-## Git
-История коммитов:
-1. `feat: add dataset and project structure`
-2. `feat: add HTML layout and base CSS`
-3. `refactor: migrate to SCSS with variables and partials`
-4. `feat: add responsive grid and filters`
-5. `docs: add README and .gitignore`
