@@ -1,0 +1,203 @@
+// Mixin для focus-состояния
+@use "variables" as *;
+@mixin focus-ring($color: $accent) {
+  outline: 2px solid $color;
+  outline-offset: 2px;
+}
+
+// Панель фильтров
+.filters {
+  background: $surface;
+  border-radius: $radius;
+  padding: spacing(1.25);
+  height: fit-content;
+  position: sticky;
+  top: spacing(1);
+
+  @media (max-width: $bp-tablet) {
+    position: static;
+  }
+
+  &__title {
+    margin: 0 0 spacing(1);
+    font-size: 1rem;
+  }
+
+  &__group {
+    margin-bottom: spacing(1);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__label {
+    display: block;
+    font-size: 0.85rem;
+    color: $muted;
+    margin-bottom: spacing(0.35);
+  }
+
+  &__select,
+  &__input {
+    width: 100%;
+    padding: spacing(0.55) spacing(0.75);
+    border: 1px solid rgba($text, 0.15);
+    border-radius: $radius;
+    background: $surface;
+    color: $text;
+    font: inherit;
+
+    &:focus {
+      @include focus-ring;
+      border-color: $accent;
+    }
+  }
+
+  &__range {
+    width: 100%;
+    accent-color: $accent;
+  }
+
+  &__reset {
+    display: inline-block;
+    width: 100%;
+    padding: spacing(0.6) spacing(1);
+    margin-top: spacing(0.5);
+    background: $accent;
+    color: #fff;
+    border: none;
+    border-radius: $radius;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+}
+
+// Информационный блок
+.info {
+  background: $surface;
+  border-radius: $radius;
+  padding: spacing(0.85) spacing(1.25);
+  margin-bottom: spacing(1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: spacing(0.5);
+  font-size: 0.9rem;
+  color: $muted;
+
+  &__count strong {
+    color: $text;
+  }
+}
+
+// Сетка каталога
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: spacing(1.25);
+
+  &__empty {
+    grid-column: 1 / -1;
+    padding: spacing(2);
+    text-align: center;
+    background: $surface;
+    border-radius: $radius;
+    color: $muted;
+  }
+}
+
+// Карточка товара
+.card {
+  background: $surface;
+  border-radius: $radius;
+  padding: spacing(1.25);
+  display: flex;
+  flex-direction: column;
+  gap: spacing(0.6);
+  border: 1px solid rgba($text, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba($text, 0.08);
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: spacing(0.5);
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  &__badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: spacing(0.2) spacing(0.6);
+    border-radius: 999px;
+    background: rgba($accent, 0.1);
+    color: $accent;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  &__meta {
+    color: $muted;
+    font-size: 0.85rem;
+  }
+
+  &__footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-top: spacing(0.6);
+    border-top: 1px solid rgba($text, 0.06);
+  }
+
+  &__price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $text;
+  }
+
+  &__rating {
+    font-size: 0.9rem;
+    color: $accent;
+    font-weight: 600;
+  }
+}
+
+// Адаптив: плотность карточек на мобильном
+@media (max-width: $bp-mobile) {
+  .catalog {
+    grid-template-columns: 1fr;
+    gap: spacing(1);
+  }
+
+  .card {
+    padding: spacing(1);
+  }
+
+  .header__title {
+    font-size: 1.05rem;
+  }
+}

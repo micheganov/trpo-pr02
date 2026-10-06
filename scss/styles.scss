@@ -1,0 +1,5 @@
+// Главный файл: подключает все partial-файлы
+@use "variables";
+@use "base";
+@use "layout";
+@use "components";

@@ -1,0 +1,74 @@
+// Mixin: адаптивный контейнер
+@use "variables" as *;
+@mixin container($max: $container-max) {
+  width: 100%;
+  max-width: $max;
+  margin: 0 auto;
+  padding: 0 $space;
+}
+
+// Функция: кратный отступ
+@function spacing($multiplier) {
+  @return $space * $multiplier;
+}
+
+.container {
+  @include container;
+}
+
+// Шапка
+.header {
+  background: $surface;
+  border-bottom: 1px solid rgba($text, 0.08);
+  padding: spacing(1) 0;
+
+  &__inner {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  &__badge {
+    font-size: 0.85rem;
+    color: $muted;
+  }
+}
+
+// Основная раскладка: панель фильтров + каталог
+.layout {
+  @include container;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: spacing(1.5);
+  padding-top: spacing(1.5);
+  padding-bottom: spacing(2);
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: 1fr;
+    gap: spacing(1);
+  }
+}
+
+// Подвал
+.footer {
+  background: $surface;
+  border-top: 1px solid rgba($text, 0.08);
+  padding: spacing(1.25) 0;
+  color: $muted;
+  font-size: 0.9rem;
+
+  &__inner {
+    @include container;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: spacing(0.5);
+  }
+}

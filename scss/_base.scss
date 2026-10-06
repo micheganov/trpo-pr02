@@ -1,0 +1,41 @@
+@use "variables" as *;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: $background;
+  color: $text;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+a {
+  color: $accent;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+// Сброс списка
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
